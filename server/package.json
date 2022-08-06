@@ -1,0 +1,24 @@
+{
+    "name": "server",
+    "version": "1.0.0",
+    "description": "NodeJS server for PERN customer application",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "nodemon index.js"
+    },
+    "keywords": [
+        "PERN",
+        "React",
+        "Postgres",
+        "NodeJS"
+    ],
+    "author": "Luis Blanco",
+    "license": "MIT",
+    "dependencies": {
+        "body-parser": "^1.20.0",
+        "cors": "^2.8.5",
+        "express": "^4.18.1",
+        "pg": "^8.7.3"
+    }
+}
