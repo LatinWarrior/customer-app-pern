@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { FaDumpster, FaEdit } from 'react-icons/fa';
+import { FaTrashAlt, FaEdit } from 'react-icons/fa';
 
 import './CustomerList.css';
 
@@ -77,7 +77,7 @@ export const CustomerList = () => {
                                                     )
                                                 }
                                                 className='btn btn-danger btn-lng'>
-                                                <FaDumpster className='icon-margin' />
+                                                <FaTrashAlt className='icon-margin' />
                                                 Delete
                                             </button>
                                         </td>
