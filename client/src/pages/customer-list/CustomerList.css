@@ -5,13 +5,17 @@
 #customers {
     font-family: Arial, Helvetica, sans-serif;
     border-collapse: collapse;
-    width: 100%;    
+    width: 100%;
 }
 
 #customers td,
 #customers th {
     border: 1px solid #ddd;
     padding: 8px;
+}
+
+#customers th .actions {
+    width: 5rem;
 }
 
 #customers tr:nth-child(even) {
@@ -29,4 +33,26 @@
     background-color: #04aa6d;
     color: white;
     text-transform: uppercase;
+}
+
+#customers th.col-name,
+tr.col-name {
+    width: 83%;
+}
+
+#customers th.col-id,
+tr.col-id {
+    width: 5%;
+}
+
+#customers th.col-actions,
+tr.col-actions {
+    width: 12%;    
+}
+
+#customers tr div.align-actions {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin: 0 auto;
 }

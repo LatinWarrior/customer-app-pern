@@ -41,10 +41,9 @@ export const CustomerList = () => {
                 <table id='customers'>
                     <thead>
                         <tr>
-                            <th>Id</th>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Phone</th>
+                            <th className='col-id'>Id</th>
+                            <th className='col-name'>Name</th>
+                            <th className='col-actions'>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -52,34 +51,38 @@ export const CustomerList = () => {
                             customers.map((customer) => {
                                 return (
                                     <tr key={customer.id}>
-                                        <td>{customer.id}</td>
-                                        <td>{customer.username}</td>
-                                        <td>
-                                            <button
-                                                className='btn btn-primary btn-lng'
-                                                onClick={(e) =>
-                                                    editCustomer(
-                                                        e,
-                                                        customer.id,
-                                                        customer.username
-                                                    )
-                                                }>
-                                                <FaEdit className='icon-margin' />
-                                                Edit
-                                            </button>
+                                        <td className='col-id'>
+                                            {customer.id}
                                         </td>
-                                        <td>
-                                            <button
-                                                onClick={(e) =>
-                                                    deleteCustomer(
-                                                        e,
-                                                        customer.id
-                                                    )
-                                                }
-                                                className='btn btn-danger btn-lng'>
-                                                <FaTrashAlt className='icon-margin' />
-                                                Delete
-                                            </button>
+                                        <td className='col-name'>
+                                            {customer.username}
+                                        </td>
+                                        <td className='col-actions'>
+                                            <div className='align-actions'>
+                                                <button
+                                                    className='btn btn-primary btn-lng'
+                                                    onClick={(e) =>
+                                                        editCustomer(
+                                                            e,
+                                                            customer.id,
+                                                            customer.username
+                                                        )
+                                                    }>
+                                                    <FaEdit className='icon-margin' />
+                                                    Edit
+                                                </button>
+                                                <button
+                                                    onClick={(e) =>
+                                                        deleteCustomer(
+                                                            e,
+                                                            customer.id
+                                                        )
+                                                    }
+                                                    className='btn btn-danger btn-lng'>
+                                                    <FaTrashAlt className='icon-margin' />
+                                                    Delete
+                                                </button>
+                                            </div>
                                         </td>
                                     </tr>
                                 );
