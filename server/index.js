@@ -37,10 +37,8 @@ app.get('/users', async (req, res, next) => {
 // Create a user.
 app.post('/users', async (req, res, next) => {
     try {
-        // console.log(`req: ${JSON.stringify(req)}`);
-        const { username, email } = req.body;
+        const { username } = req.body;
         console.log(`username: ${username}`);
-        console.log(`email: ${email}`);
         const newUser = await pool.query(
             `INSERT INTO users (username) VALUES ($1) RETURNING *`,
             [username]
@@ -66,6 +64,7 @@ app.get('/users/:id', async (req, res, next) => {
     }
 });
 
+// Delete a user
 app.delete('/users/:id', async (req, res, next) => {
     try {
         console.log(`req.params: ${req.params}`);
@@ -74,6 +73,25 @@ app.delete('/users/:id', async (req, res, next) => {
             id,
         ]);
         res.status(204).json(results.rows);
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send(`Server Error: ${err.message}`);
+    }
+});
+
+// Update a user.
+app.put('/users/:id', async (req, res, next) => {
+    try {
+        // console.log(`req: ${JSON.stringify(req)}`);
+        console.log(`In PUT`);
+        const { id, username } = req.body;
+        console.log(`username: ${username}`);
+        const updatedUser = await pool.query(
+            `UPDATE users SET username  = $2 WHERE id = $1`,
+            [id, username]
+        );
+        console.log(updatedUser);
+        res.status(200).json(updatedUser.rows[0]);
     } catch (err) {
         console.error(err.message);
         res.status(500).send(`Server Error: ${err.message}`);

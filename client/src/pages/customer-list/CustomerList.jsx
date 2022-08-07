@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FaTrashAlt, FaEdit } from 'react-icons/fa';
 
+import { EditCustomer } from './../../components/edit-customer/EditCustomer';
+
 import './CustomerList.css';
 
 export const CustomerList = () => {
@@ -13,16 +15,28 @@ export const CustomerList = () => {
         async function fetchCustomers() {
             const response = await fetch('http://localhost:8001/users');
             const fetchedCustomers = await response.json(response);
-            console.log(fetchedCustomers);
+            // console.log(fetchedCustomers);
             setCustomers(fetchedCustomers);
         }
         // Invoke the function
         fetchCustomers();
     }, []);
 
-    const deleteCustomer = (e, id) => {
+    const deleteCustomer = async (e, id) => {
         e.preventDefault();
         console.log(`Delete customer ${id}`);
+        try {
+            const deleteCustomer = await fetch(
+                `http://localhost:8001/users/${id}`,
+                {
+                    method: 'DELETE',
+                }
+            );
+            console.log(deleteCustomer);
+            setCustomers(customers.filter((customer) => customer.id !== id));
+        } catch (err) {
+            console.error(err.message);
+        }
     };
 
     const editCustomer = (e, id, username) => {
@@ -71,6 +85,9 @@ export const CustomerList = () => {
                                                     <FaEdit className='icon-margin' />
                                                     Edit
                                                 </button>
+                                                {/* <EditCustomer
+                                                    customer={customer}
+                                                /> */}
                                                 <button
                                                     onClick={(e) =>
                                                         deleteCustomer(
